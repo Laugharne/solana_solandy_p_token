@@ -1,6 +1,6 @@
 
 
-# [00:00](https://youtu.be/TxlEXOJhWb0?t=0)  **Introduction to P Token on Solana**
+# [00:00](https://youtu.be/TxlEXOJhWb0?t=0)  **Introduction to P-Token on Solana**
 
 ```
 This is a transcription of a YouTube video. Among the relevant resources for learning more about EVM and gas optimisation, I found this video particularly interesting.
@@ -10,34 +10,49 @@ This content presents the opinions and perspectives of industry experts or other
 Readers are encouraged to verify the information on their own and seek professional advice before making any decisions based on this content.
 ```
 
+- [Introduction to P-Token on Solana](#0000--introduction-to-p-token-on-solana)
+- [Technical Insights into P-Token](#0157--technical-insights-into-p-token)
+- [Implementation Details](#0453--implementation-details)
+- [Token Program Implementation](#0710--token-program-implementation)
+- [Understanding Instruction Data](#0930--understanding-instruction-data)
+- [Token Account Layout and Validation](#1127--token-account-layout-and-validation)
+- [Burning Tokens Logic](#1213--burning-tokens-logic)
+- [Creating Mint via CLI](#1257--creating-mint-via-cli)
+- [Token Program Development on Solana](#1426--token-program-development-on-solana)
+- [Token Program Development Insights](#2216--token-program-development-insights)
+- [Understanding the Token Program on Solana](#3026--understanding-the-token-program-on-solana)
+- [Efficiency Improvements in Solana](#3745--efficiency-improvements-in-solana)
+- [Transcription](#transcription)
 
-## Overview of P Token
-- [00:00](https://youtu.be/TxlEXOJhWb0?t=0)  The video introduces a new token program called P Token, which is an educational exploration rather than a traditional tutorial.
-- [00:23](https://youtu.be/TxlEXOJhWb0?t=23)  P Token is essentially a reimplementation of the existing SPL token standard, referred to as "token Ki," and is based on the Pinocchio framework.
+
+
+## Overview of P-Token
+- [00:00](https://youtu.be/TxlEXOJhWb0?t=0)  The video introduces a new token program called **P-Token**, which is an educational exploration rather than a traditional tutorial.
+- [00:23](https://youtu.be/TxlEXOJhWb0?t=23)  P-Token is essentially a **reimplementation of the existing SPL token standard**, referred to as "token Ki," and is based on the Pinocchio framework.
 - [00:47](https://youtu.be/TxlEXOJhWb0?t=47)  This new implementation aims to enhance efficiency while maintaining compatibility with the original token program.
 
 ## Importance of Efficiency
 - [01:10](https://youtu.be/TxlEXOJhWb0?t=70)  The current usage of the token program in Solana includes DeFi activities and meme coin trading, which heavily rely on this infrastructure.
 - [01:33](https://youtu.be/TxlEXOJhWb0?t=93)  Reducing compute unit (CU) usage for token transfers can lead to more transactions fitting into each block, optimizing overall network performance.
 
-# [01:57](https://youtu.be/TxlEXOJhWb0?t=117)  Technical Insights into P Token
+# [01:57](https://youtu.be/TxlEXOJhWb0?t=117)  Technical Insights into P-Token
 
 ## Features and Compatibility
-- [01:57](https://youtu.be/TxlEXOJhWb0?t=117)  P Token maintains the same instruction set and account layouts as the original SPL token program, ensuring developers face no significant changes when integrating it.
+- [01:57](https://youtu.be/TxlEXOJhWb0?t=117)  P-Token maintains the same instruction set and account layouts as the original SPL token program, ensuring developers face no significant changes when integrating it.
 - [02:53](https://youtu.be/TxlEXOJhWb0?t=173)  It optimizes for compute units while being fully compatible with previous implementations, allowing seamless transitions for developers.
 
 ## Performance Comparisons
-- [03:40](https://youtu.be/TxlEXOJhWb0?t=220)  Initial comparisons show that P Token uses significantly fewer compute units; for instance, transferring tokens requires only 200 CU compared to 6.2K CU in classic SPL tokens.
+- [03:40](https://youtu.be/TxlEXOJhWb0?t=220)  Initial comparisons show that P-Token uses significantly fewer compute units; for instance, transferring tokens requires **only 200 CU** compared to **6.2K CU** in classic SPL tokens.
 - [04:17](https://youtu.be/TxlEXOJhWb0?t=257)  Other operations like minting are also more efficient under the new implementation.
 
 # [04:53](https://youtu.be/TxlEXOJhWb0?t=293)  Implementation Details
 
 ## Code Structure and Optimization
-- [04:53](https://youtu.be/TxlEXOJhWb0?t=293)  The code utilizes a non-standard entry point style from Pinocchio and retains familiar discriminators from the original token program.
+- [04:53](https://youtu.be/TxlEXOJhWb0?t=293)  The code utilizes a **non-standard entry point** style from Pinocchio and retains familiar discriminators from the original token program.
 - [05:17](https://youtu.be/TxlEXOJhWb0?t=317)  Optimizations include dividing processing instructions into two parts to reduce overhead during execution.
 
 ## Safety Considerations
-- [06:03](https://youtu.be/TxlEXOJhWb0?t=363)  While some unsafe code blocks exist for efficiency reasons, they are accompanied by comments explaining their safety measures.
+- [06:03](https://youtu.be/TxlEXOJhWb0?t=363)  While some **unsafe code blocks** exist for efficiency reasons, they are accompanied by comments explaining their safety measures.
 
 # [07:10](https://youtu.be/TxlEXOJhWb0?t=430)  Token Program Implementation
 
@@ -48,10 +63,10 @@ Readers are encouraged to verify the information on their own and seek professio
 - [07:32](https://youtu.be/TxlEXOJhWb0?t=452)  The speaker discusses installing necessary dependencies using `pmpm install` and building programs. They mention that the token program version 0 Z has been built successfully.
 
 ## Deploying the Token Program
-- [08:07](https://youtu.be/TxlEXOJhWb0?t=487)  A new key pair named PTP for Pinocchio Token Program is created and deployed. The size of the program is noted to be 61 kilobytes, requiring approximately 0.42 Sol for rent.
+- [08:07](https://youtu.be/TxlEXOJhWb0?t=487)  A new key pair named PTP for Pinocchio Token Program is created and deployed. The size of the program is noted to be **61 kilobytes**, requiring approximately **0.42 Sol for rent**.
 
 ## Successful Deployment Confirmation
-- [08:42](https://youtu.be/TxlEXOJhWb0?t=522)  After deploying on defnet without priority fees, confirmation is received that PTP has been successfully deployed as the token program.
+- [08:42](https://youtu.be/TxlEXOJhWb0?t=522)  After deploying on devnet without priority fees, confirmation is received that PTP has been successfully deployed as the token program.
 
 ## Creating a Token Account
 - [09:05](https://youtu.be/TxlEXOJhWb0?t=545)  The speaker explains how to create a token account using SPL (Solana Program Library). It involves creating an account assigned to the token program with specific parameters like mint authority and decimals.
@@ -117,7 +132,7 @@ Readers are encouraged to verify the information on their own and seek professio
 - [22:54](https://youtu.be/TxlEXOJhWb0?t=1374)  Acknowledges confusion between Rust and TypeScript, emphasizing the need for a function to change programs generically.
 
 ## Debugging Incorrect Program IDs
-- [23:28](https://youtu.be/TxlEXOJhWb0?t=1408)  The speaker encounters an "incorrect program ID" error when attempting to call the token program, expressing frustration over unclear error messages.
+- [23:28](https://youtu.be/TxlEXOJhWb0?t=1408)  The speaker encounters an **"incorrect program ID" error** when attempting to call the token program, expressing frustration over unclear error messages.
 - [24:02](https://youtu.be/TxlEXOJhWb0?t=1442)  Identifies that the failure may stem from ownership checks within the source code, particularly regarding mint accounts.
 
 ## Successful Account Creation
@@ -130,7 +145,7 @@ Readers are encouraged to verify the information on their own and seek professio
 
 ## Transfer Operations and Efficiency Comparison
 - [27:50](https://youtu.be/TxlEXOJhWb0?t=1670)  The speaker initiates a transfer of tokens but realizes additional steps are needed to create another token account for successful transfers.
-- [29:19](https://youtu.be/TxlEXOJhWb0?t=1759)  Compares compute units used by different implementations (P Token vs. standard Token Cake), highlighting significant efficiency improvements in P Token's design.
+- [29:19](https://youtu.be/TxlEXOJhWb0?t=1759)  Compares compute units used by different implementations (P-Token vs. standard Token Cake), highlighting significant efficiency improvements in P-Token's design.
 
 ## Conclusion on Implementation Efficiency
 
@@ -149,11 +164,11 @@ Readers are encouraged to verify the information on their own and seek professio
 - [32:41](https://youtu.be/TxlEXOJhWb0?t=1961)  A consensus-breaking change would allow for different implementations between epochs while maintaining user experience.
 
 ## Risks and Testing of New Implementations
-- [33:14](https://youtu.be/TxlEXOJhWb0?t=1994)  Transitioning to a new implementation carries risks, particularly if bugs exist in the new version ("P token"), which could affect significant assets like USDC.
+- [33:14](https://youtu.be/TxlEXOJhWb0?t=1994)  Transitioning to a new implementation carries risks, particularly if bugs exist in the new version ("P-Token"), which could affect significant assets like USDC.
 - [33:36](https://youtu.be/TxlEXOJhWb0?t=2016)  Extensive audits and testing are crucial before implementing changes to ensure stability and security within the ecosystem.
 
 ## Transition Process and Implications for Developers
-- [33:59](https://youtu.be/TxlEXOJhWb0?t=2039)  Validators will vote on updating to "P token," targeting Solana version 2.2 with feature flags activated per epoch.
+- [33:59](https://youtu.be/TxlEXOJhWb0?t=2039)  Validators will vote on updating to "P-Token," targeting Solana version 2.2 with feature flags activated per epoch.
 - [34:55](https://youtu.be/TxlEXOJhWb0?t=2095)  Developers should prepare for changes in compute units (CU), although existing programs using "token kek" should function similarly post-upgrade.
 
 ## Final Considerations
@@ -180,20 +195,20 @@ Readers are encouraged to verify the information on their own and seek professio
 # Transcription
 
 - [00:00:00](https://www.youtube.com/watch?v=n-ym1utpzhk?t=0) ➜ so Solana gets a new tokken program hello and welcome to another Solana tutorial although not so sure if you can call this a tutorial it's an educational
-- [00:00:11](https://www.youtube.com/watch?v=n-ym1utpzhk?t=11) ➜ video I might as well call it tutorial today we're going to have a look at P token which is not what I first thought a new token standard on Solana no it is
+- [00:00:11](https://www.youtube.com/watch?v=n-ym1utpzhk?t=11) ➜ video I might as well call it tutorial today we're going to have a look at P-Token which is not what I first thought a new token standard on Solana no it is
 - [00:00:23](https://www.youtube.com/watch?v=n-ym1utpzhk?t=23) ➜ in fact the same token standard as SPL token you know what we know as token Ki the old token program or the regular to token program the token program but that
-- [00:00:32](https://www.youtube.com/watch?v=n-ym1utpzhk?t=32) ➜ gets a reimplementation with Pinocchio hence P token I think and I'm pretty excited about this I learned about this yesterday in the core Community call
+- [00:00:32](https://www.youtube.com/watch?v=n-ym1utpzhk?t=32) ➜ gets a reimplementation with Pinocchio hence P-Token I think and I'm pretty excited about this I learned about this yesterday in the core Community call
 - [00:00:44](https://www.youtube.com/watch?v=n-ym1utpzhk?t=44) ➜ well I wasn't part of the core Community call but yesterday they uploaded it to YouTube and I watched that I'm so excited about this because it's a better
 - [00:00:53](https://www.youtube.com/watch?v=n-ym1utpzhk?t=53) ➜ implementation or or a more efficient implementation of the same token program so all of what we know about the token program is still true just that it's
 - [00:01:04](https://www.youtube.com/watch?v=n-ym1utpzhk?t=64) ➜ more efficient now and why is that important well so many transactions need the token program I mean what do you do in salana yes you do some defi or you
 - [00:01:15](https://www.youtube.com/watch?v=n-ym1utpzhk?t=75) ➜ trade some meme coins right that's what you do right now on Solana and that's all token program stuff all of it all of the other programs just CPI into token
 - [00:01:26](https://www.youtube.com/watch?v=n-ym1utpzhk?t=86) ➜ kek and token kek takes up quite a bit of the global block space because we're Limited in terms of cus what we can pack into a block so if a token transfer
 - [00:01:39](https://www.youtube.com/watch?v=n-ym1utpzhk?t=99) ➜ would need less compute that would overall be good for Solana because we could fit more transactions into blocks and I think that's the main reason why
-- [00:01:50](https://www.youtube.com/watch?v=n-ym1utpzhk?t=110) ➜ they're implementing this so yeah let's just have a look at P token what it really is why it's useful if it's really the same as token cake and then in the
-- [00:01:59](https://www.youtube.com/watch?v=n-ym1utpzhk?t=119) ➜ end will discuss how it's going to be deployed and what you need to know as a de so let's get started P token Solana Pinocchio token
-- [00:02:10](https://www.youtube.com/watch?v=n-ym1utpzhk?t=130) ➜ price somebody made a p token of course they did it's Solana oh look it's me that's a core Community call I was talking about you can watch that but you
-- [00:02:20](https://www.youtube.com/watch?v=n-ym1utpzhk?t=140) ➜ don't have to cuz I'm going to break it down for you now anyway what I'm looking for is uh a GitHub repository there you go feibo has a p token repository that's
-- [00:02:30](https://www.youtube.com/watch?v=n-ym1utpzhk?t=150) ➜ the one so P token a Pinocchio based token program a reimplementation of the token program it's just a new implementation of the same token program
+- [00:01:50](https://www.youtube.com/watch?v=n-ym1utpzhk?t=110) ➜ they're implementing this so yeah let's just have a look at P-Token what it really is why it's useful if it's really the same as token cake and then in the
+- [00:01:59](https://www.youtube.com/watch?v=n-ym1utpzhk?t=119) ➜ end will discuss how it's going to be deployed and what you need to know as a de so let's get started P-Token Solana Pinocchio token
+- [00:02:10](https://www.youtube.com/watch?v=n-ym1utpzhk?t=130) ➜ price somebody made a P-Token of course they did it's Solana oh look it's me that's a core Community call I was talking about you can watch that but you
+- [00:02:20](https://www.youtube.com/watch?v=n-ym1utpzhk?t=140) ➜ don't have to cuz I'm going to break it down for you now anyway what I'm looking for is uh a GitHub repository there you go feibo has a P-Token repository that's
+- [00:02:30](https://www.youtube.com/watch?v=n-ym1utpzhk?t=150) ➜ the one so P-Token a Pinocchio based token program a reimplementation of the token program it's just a new implementation of the same token program
 - [00:02:46](https://www.youtube.com/watch?v=n-ym1utpzhk?t=166) ➜ which means the same token standard we don't get a new token standard it's just the reimplementation of the program important distinction one of the
 - [00:02:56](https://www.youtube.com/watch?v=n-ym1utpzhk?t=176) ➜ mo well probably after the system program and and maybe compute budget but I don't count those this is the most used program although I don't have stats
 - [00:03:07](https://www.youtube.com/watch?v=n-ym1utpzhk?t=187) ➜ for that so don't quote me on that but I'm assuming that it's certainly up there the purpose of this is to have an implementation that optimizes for
@@ -201,10 +216,10 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:03:25](https://www.youtube.com/watch?v=n-ym1utpzhk?t=205) ➜ means we as a developer don't really need to care about this no right it's just a new implementation of the same program so if you're doing a CPI into
 - [00:03:35](https://www.youtube.com/watch?v=n-ym1utpzhk?t=215) ➜ that program it's the exact same so there's nothing that you need to worry about right of course not well unless we will
 - [00:03:45](https://www.youtube.com/watch?v=n-ym1utpzhk?t=225) ➜ see so features the no standard create same instruction and account layout minimal CU usage yes okay and here we see some comparisons in terms of compute
-- [00:03:58](https://www.youtube.com/watch?v=n-ym1utpzhk?t=238) ➜ units used the p token much more efficient than the classic SPL token by a factor more than 10 the most interesting ones are of course the
-- [00:04:11](https://www.youtube.com/watch?v=n-ym1utpzhk?t=251) ➜ transfer checked holy that's a difference 6K compute a normal token transfer takes 6.2 th000 compute units wow and with P token we get it down to
+- [00:03:58](https://www.youtube.com/watch?v=n-ym1utpzhk?t=238) ➜ units used the P-Token much more efficient than the classic SPL token by a factor more than 10 the most interesting ones are of course the
+- [00:04:11](https://www.youtube.com/watch?v=n-ym1utpzhk?t=251) ➜ transfer checked holy that's a difference 6K compute a normal token transfer takes 6.2 th000 compute units wow and with P-Token we get it down to
 - [00:04:25](https://www.youtube.com/watch?v=n-ym1utpzhk?t=265) ➜ 200 which way more efficient so yeah that's better also the mint two and the initialized mint more efficient yeah cool so I wanted directly should we
-- [00:04:38](https://www.youtube.com/watch?v=n-ym1utpzhk?t=278) ➜ check Source client interface scripts program you know I think it's easier if I clone it hello P token let's open this and we have the entry point and
+- [00:04:38](https://www.youtube.com/watch?v=n-ym1utpzhk?t=278) ➜ check Source client interface scripts program you know I think it's easier if I clone it hello P-Token let's open this and we have the entry point and
 - [00:04:53](https://www.youtube.com/watch?v=n-ym1utpzhk?t=293) ➜ processor entry point using the Pinocchio style non-standard entry point I guess and yeah we have the same discriminators
 - [00:05:02](https://www.youtube.com/watch?v=n-ym1utpzhk?t=302) ➜ as we are used to from the token program where three is the transfer that's the one I know by heart seven is the mint two they still do some logging I thought
 - [00:05:13](https://www.youtube.com/watch?v=n-ym1utpzhk?t=313) ➜ they might get rid of those messages oh it's interesting they have a process instruction it's divided into two parts to reduce the overhead of having a large
@@ -225,8 +240,8 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:07:51](https://www.youtube.com/watch?v=n-ym1utpzhk?t=471) ➜ install and then programs build so there are some dependencies but not many the token program in version 0 Z has been built cool I have a deploy 92t would be
 - [00:08:04](https://www.youtube.com/watch?v=n-ym1utpzhk?t=484) ➜ this key pair H I want a different one how about PTP for Pinocchio token program there we go we use that so we copy the PT to Target deploy the key
 - [00:08:19](https://www.youtube.com/watch?v=n-ym1utpzhk?t=499) ➜ pair there we go change there you want to have the the private key for that you're welcome we have the S so here let's see how big that is we should see
-- [00:08:27](https://www.youtube.com/watch?v=n-ym1utpzhk?t=507) ➜ that down here 61 kilobytes that's not too bad we will need just 0.42 roughly Sol for rent for this program so let's go to defnet and set
-- [00:08:42](https://www.youtube.com/watch?v=n-ym1utpzhk?t=522) ➜ our key pair to the Pinocchio key and get an air drop and then we Solana program deploy and since we're on defnet that should just work without priority
+- [00:08:27](https://www.youtube.com/watch?v=n-ym1utpzhk?t=507) ➜ that down here 61 kilobytes that's not too bad we will need just 0.42 roughly Sol for rent for this program so let's go to devnet and set
+- [00:08:42](https://www.youtube.com/watch?v=n-ym1utpzhk?t=522) ➜ our key pair to the Pinocchio key and get an air drop and then we Solana program deploy and since we're on devnet that should just work without priority
 - [00:08:54](https://www.youtube.com/watch?v=n-ym1utpzhk?t=534) ➜ fees and without yeah there we go PTP is deployed wonderful so that's going to be my token program now I'm actually super curious cuz I can do stuff like SPL
 - [00:09:05](https://www.youtube.com/watch?v=n-ym1utpzhk?t=545) ➜ token create token with a regular token program what that will do if we have a look at it is it does a create account assigns it to the Token program 82 bytes
 - [00:09:19](https://www.youtube.com/watch?v=n-ym1utpzhk?t=559) ➜ as just a standard size of a mint account and since we're not using extensions that's static and then we do a initialize mint and that's it with
@@ -242,7 +257,7 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:11:05](https://www.youtube.com/watch?v=n-ym1utpzhk?t=665) ➜ there's a zero then there's no freeze Authority otherwise makes this a POP key so yeah very efficient implementation pretty cool more difficult to read
 - [00:11:14](https://www.youtube.com/watch?v=n-ym1utpzhk?t=674) ➜ admittedly but if you're just interested in state you can read the original token program the SPL token program or I also saw something here with State at the
 - [00:11:24](https://www.youtube.com/watch?v=n-ym1utpzhk?t=684) ➜ interface so there is the interface definition that thing has State for the mint for instance where you get you know mint Authority Supply decimals that's
-- [00:11:36](https://www.youtube.com/watch?v=n-ym1utpzhk?t=696) ➜ the exact same as with SPL token token account has the mint the owner the amount very same as SP token I don't know why they need the incinerator is
+- [00:11:36](https://www.youtube.com/watch?v=n-ym1utpzhk?t=696) ➜ the exact same as with SPL token token account has the mint the owner the amount very same as SP-Token I don't know why they need the incinerator is
 - [00:11:47](https://www.youtube.com/watch?v=n-ym1utpzhk?t=707) ➜ owned by System Program or incinerator why do we need that at close account ahuh if it's owned by the incinerator we are allowed to close it right they added
 - [00:11:59](https://www.youtube.com/watch?v=n-ym1utpzhk?t=719) ➜ something like that because people were sending tokens to the incinerator and then they added this oh if it's owned by the incinerator or the system program
 - [00:12:10](https://www.youtube.com/watch?v=n-ym1utpzhk?t=730) ➜ then anybody can close the token account oh no wait any other we validate and if it's owned by the system prog or incinerator then we say inval account
@@ -269,7 +284,7 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:16:09](https://www.youtube.com/watch?v=n-ym1utpzhk?t=969) ➜ consumed success and here I'm screaming too much let me drink and here I think we already see the one difference that the Pinocchio token program has to token
 - [00:16:21](https://www.youtube.com/watch?v=n-ym1utpzhk?t=981) ➜ cek which is token kek does logging it says we're doing initialized mint two and and we also see it consumed 2,700 compute units whereas Pinocchio
 - [00:16:36](https://www.youtube.com/watch?v=n-ym1utpzhk?t=996) ➜ used 200 compute units which is pretty amazing I like this this is pretty cool cuz the instructions are the exact same the accounts are the exact same so you
-- [00:16:49](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1009) ➜ can treat it the same well can you so we should be able to do everything that we do with a token program now also with this P token program program except it's
+- [00:16:49](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1009) ➜ can treat it the same well can you so we should be able to do everything that we do with a token program now also with this P-Token program program except it's
 - [00:17:00](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1020) ➜ not going to be so easy let's create an account and in as token there is a get create Associated token account instruction I'm fairly sure that I
 - [00:17:11](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1031) ➜ cannot use this but let's try the AA here it is fine the names are so confusing anyway so mint owner and the token program is token program so we
 - [00:17:23](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1043) ➜ have the ATA we have the mint owner which is signer the payer which shall also be the signer and token program oh payer you need a signer there you go I
@@ -286,7 +301,7 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:19:27](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1167) ➜ do this but the associated token program calls it anyway and that's fine but please just don't freaking log this besides we don't even call it token 2022
 - [00:19:38](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1178) ➜ anymore it's token extensions now but that program is immutable so we can't change that so I was always like this is going to follow us forever Hint it won't
 - [00:19:49](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1189) ➜ but that's spoilers so yeah that's um we don't need to call this because it doesn't do anything except give us that log however actually maybe we should do
-- [00:19:59](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1199) ➜ it to show that the P token program won't give us this warning or maybe it does I don't know we should check and then it just does the initialize account
+- [00:19:59](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1199) ➜ it to show that the P-Token program won't give us this warning or maybe it does I don't know we should check and then it just does the initialize account
 - [00:20:09](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1209) ➜ three and before it had a system program create the account with that size so we know what we need to do we just need to do what the associated token program is
 - [00:20:19](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1219) ➜ doing just manually so we need an account let's call it token account and we generate a new key pair and then so is there a get account size I mean we
 - [00:20:32](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1232) ➜ could simulate that but actually in our interface it should tell us what such an account account's size is size of account well uh can I run this or I just
@@ -297,27 +312,27 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:21:29](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1289) ➜ we don't really need this but we want to add it anyway to check get initialized immutable owner instruction for this account let's just see what
 - [00:21:42](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1302) ➜ happens if we add this first we do it for the actual token program just to check that that actually works let's see yep that would give success and again
 - [00:21:53](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1313) ➜ the initialize immutable owner gives us this Log please upgrade okay and it would work but what if instead of the actual token program I
-- [00:22:03](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1323) ➜ use P token and run the same thing then oh sh that also complain oh wait but I'm calling the token program ah still calling the token
+- [00:22:03](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1323) ➜ use P-Token and run the same thing then oh sh that also complain oh wait but I'm calling the token program ah still calling the token
 - [00:22:16](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1336) ➜ program hold on hold my beer the create account is a system program that's fine but then a get initial this guy can I give you a token
 - [00:22:28](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1348) ➜ program in here no cuz that thing apparently is already bound to this token program TP address extends type of this TP oh is that annoying okay can I
 - [00:22:41](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1361) ➜ say s this is a read only property on my mother I hate types see that's the disadvantage you can't easily heck with that then just want to swap all that
 - [00:22:51](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1371) ➜ token program come on so I guess we got to do a upd that's not how typescript works this is how typescript works sometimes rust
 - [00:23:03](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1383) ➜ confuses me there we go that should do it and that's so generic that I'm going to make a function for this change program there you go then we change
 - [00:23:14](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1394) ➜ program for this we change the program for the in immutable to the Token program that I want this is how I do it updated there we go and now after some
-- [00:23:28](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1408) ➜ hacking let's try that again this time we should actually call our P token program and it does but we still fail for
+- [00:23:28](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1408) ➜ hacking let's try that again this time we should actually call our P-Token program and it does but we still fail for
 - [00:23:39](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1419) ➜ incorrect program ID for instruction and also we still get that annoying log damn it guys if we swap out that program can we please get rid of this we have an
 - [00:23:52](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1432) ➜ incorrect program ID that's what it says but what is really the incorrect program ID I mean it's a bit more annoying to read now because I don't know which
 - [00:24:02](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1442) ➜ instruction is failing here so I need to count this was the immutable owner and then we invoked the create account so the create account one is failing
 - [00:24:13](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1453) ➜ incorrect program ID for instruction and that could mean so many things let's just read the source code process initialize account could come maybe from
 - [00:24:23](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1463) ➜ here incorrect program ID so if the minan is not owned by this program it will give me this error so probably the mint
-- [00:24:34](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1474) ➜ is not owned by okay let me double check what what's my mint account this one what are you you are assigned to my P token program so that part is fine but
+- [00:24:34](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1474) ➜ is not owned by okay let me double check what what's my mint account this one what are you you are assigned to my P-Token program so that part is fine but
 - [00:24:47](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1487) ➜ the check how he does it check owner it checks for token program ID and not self and the token program ID it's actually this one it it's token cake it checks
 - [00:25:03](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1503) ➜ that it's token cake of course it checks that it's token cake why does he do that well spoiler alert because one day it will become token cake but for now it is
 - [00:25:15](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1515) ➜ this so please be this I'm going to rebuild you and then redeploy you then rerun this and there we go we get success
 - [00:25:29](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1529) ➜ H there we go now it works so we create a token account uh the nice 0.239 that I know from token accounts rent we have the initialized immutable
 - [00:25:42](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1542) ➜ owner and the create account and it still gives me that warning oh is that annoying can we just you know not H anyway but that may that might just
 - [00:25:53](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1553) ➜ there might be good reasons why you want that but you know I mean it's still just 160 three compute units so it's not that bad but like I just you know I just
-- [00:26:04](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1564) ➜ don't like seeing that in the log but whatever my main issue I think is that we call it SP token 2022 I don't know maybe I would rather see the actual
+- [00:26:04](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1564) ➜ don't like seeing that in the log but whatever my main issue I think is that we call it SP-Token 2022 I don't know maybe I would rather see the actual
 - [00:26:15](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1575) ➜ program ID here I also don't know what I would want I actually I want no message like all the other instructions that have no messages anymore cuz the other
 - [00:26:24](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1584) ➜ ones at least they are helpful if you would tell me here hey we're doing initialize account that at least is helpful when I look at the logs because
 - [00:26:33](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1593) ➜ one of the annoying things of the system program is it doesn't log anything it says system broken called success done I'm like okay I mean great for
@@ -335,9 +350,9 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:28:48](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1728) ➜ don't see here but we see that we just used 21 compute units 2 versus
 - [00:28:58](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1738) ➜ if we would do that with the actual token program uh but for that I need to First do other things let's create two accounts that's one C but that used 5K
 - [00:29:10](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1750) ➜ the mint that used 4.4k and then the transfer that used 6.1k 6.1 versus if we do it with
-- [00:29:26](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1766) ➜ Pinocchio 200 and 12 godamn that's a massive difference a massive difference in compute units and that's exactly why the P token program is so much more
+- [00:29:26](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1766) ➜ Pinocchio 200 and 12 godamn that's a massive difference a massive difference in compute units and that's exactly why the P-Token program is so much more
 - [00:29:38](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1778) ➜ efficient but it's the same the same standard same instructions same account setup it's just a more efficient implementation because we don't have as
-- [00:29:46](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1786) ➜ many dependencies and we actually paid attention to use fewer computes I mean that's a pretty big difference no so we saw that P token it's just a much more
+- [00:29:46](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1786) ➜ many dependencies and we actually paid attention to use fewer computes I mean that's a pretty big difference no so we saw that P-Token it's just a much more
 - [00:29:59](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1799) ➜ efficient implementation of token cake and it does the exact same thing you can use the exact same libraries it will behave the
 - [00:30:10](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1810) ➜ same with the exception of using fewer compute units and less memory allocations fewer memory allocations less memory but this use is really what
 - [00:30:21](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1821) ➜ we're looking for at the moment we don't really optimize for memory not yet I mean back when token came was written they were also not optimizing for
@@ -358,24 +373,24 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:33:00](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1980) ➜ will get approved and then validators will upgrade to a version where token kek actually has a different implementation and that is consensus
 - [00:33:08](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1988) ➜ breaking because from one Epoch to the next token kek will behave differently it will have different code I mean it will behave the same to the user and the
 - [00:33:19](https://www.youtube.com/watch?v=n-ym1utpzhk?t=1999) ➜ deaths pretty much it will just you know not have debug messages anymore and be way more CU efficient and the only downside here is that this
-- [00:33:30](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2010) ➜ implementation is not yet battle tested and might contain a bug it's more likely that P token has a bu than token kek because token kek has been around the SP
+- [00:33:30](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2010) ➜ implementation is not yet battle tested and might contain a bug it's more likely that P-Token has a bu than token kek because token kek has been around the SP
 - [00:33:41](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2021) ➜ token implementation I mean the original token cake it has been around forever I mean in Solana terms and nothing was ever exploited so fine and if there was
-- [00:33:52](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2032) ➜ a bug in P token that would be really bad because all of the tokens including usdc and let me show you um let's say it has quite some Supply what is that $9
+- [00:33:52](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2032) ➜ a bug in P-Token that would be really bad because all of the tokens including usdc and let me show you um let's say it has quite some Supply what is that $9
 - [00:34:09](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2049) ➜ billion wow and that guess what this account is owned by token cake if we check that we will see it is owned by token cake so anyway what was I so token
-- [00:34:22](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2062) ➜ cake quite a big deal like most of the value on Solana is is held by this program so it would be really really bad if P token had a bug and we would change
+- [00:34:22](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2062) ➜ cake quite a big deal like most of the value on Solana is is held by this program so it would be really really bad if P-Token had a bug and we would change
 - [00:34:36](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2076) ➜ the implementation so that's why they are super careful they're doing audits they're doing tests they're doing fuzzing and the good thing is it's not
 - [00:34:44](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2084) ➜ that big of a program it's relatively simple from what it does so if enough eyes look at it and I'm also going to look at it some more and more people are
 - [00:34:55](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2095) ➜ going to look at it you can also look at it if you want want to and eventually I guess validators will vote for updating the implementation they currently Target
 - [00:35:05](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2105) ➜ Solana version 2.2 I think and with 2.2 going live it will be in one of the feature flags and the process is that it's always one
 - [00:35:15](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2115) ➜ feature flag per Epoch so after a few epochs that feature flag will get activated and then at the epoch boundary we will change from the old token
-- [00:35:25](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2125) ➜ program implementation to the new token program implementation which is p token but it's the same token program and that's how you update an immutable
+- [00:35:25](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2125) ➜ program implementation to the new token program implementation which is P-Token but it's the same token program and that's how you update an immutable
 - [00:35:35](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2135) ➜ program cuz nothing is really immutable because if the validators decide it's not immutable it's not immutable that's how powerful the validators are but
 - [00:35:43](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2143) ➜ welcome to a distributed system like that where the power is by the people running consensus that's why it would be bad if one or two of them had all the
 - [00:35:54](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2154) ➜ soul cuz then they could do whatever just another reminder why it does matter where you stake and where you put your soul and who you trust because basically
-- [00:36:04](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2164) ➜ validators they got some power just saying anyway so yeah I hope that you got a good introduction to P token why we need it why it's so cool I hope you
-- [00:36:14](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2174) ➜ understand how P token will become token kek and to reiterate what that means for you as a de well not much honestly you don't need
+- [00:36:04](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2164) ➜ validators they got some power just saying anyway so yeah I hope that you got a good introduction to P-Token why we need it why it's so cool I hope you
+- [00:36:14](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2174) ➜ understand how P-Token will become token kek and to reiterate what that means for you as a de well not much honestly you don't need
 - [00:36:25](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2185) ➜ to change your programs if you CPI into token kek everything should work the same the only thing that changes is cu so if you expect the instruction to take
-- [00:36:37](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2197) ➜ quite some CU and you want to be efficient at the point where the feature flag gets activated you can lower this limit to the one from P token you'll
+- [00:36:37](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2197) ➜ quite some CU and you want to be efficient at the point where the feature flag gets activated you can lower this limit to the one from P-Token you'll
 - [00:36:46](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2206) ➜ just have to simulate them again and see what the limits are now and another thing that will change is logs will be different I don't think they will keepy
 - [00:36:57](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2217) ➜ all the same messages they might I don't know in the version that I have here the login got disabled I don't know if they will keep it or not we will see but
 - [00:37:07](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2227) ➜ potentially there won't be logs anymore so if your script relies on on you know those outputs here which I don't think it does and it really shouldn't if your
@@ -387,7 +402,7 @@ Readers are encouraged to verify the information on their own and seek professio
 - [00:38:07](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2287) ➜ remember the days where we were looking at the evm guys and how they optimize their program and we're like it doesn't matter on Solana yeah
 - [00:38:16](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2296) ➜ well times have changed and I expected that to happen as well I I I said it back then time will come where we need to take care of that as well and time
 - [00:38:26](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2306) ➜ has come and the people from ANA are taking care of that and the token program really is such a heavily used program that it totally makes sense to
-- [00:38:35](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2315) ➜ update with a new implementation and that's what P token is so have a look at it let us know what you think of it let me know what you think of it better on
+- [00:38:35](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2315) ➜ update with a new implementation and that's what P-Token is so have a look at it let us know what you think of it let me know what you think of it better on
 - [00:38:43](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2323) ➜ Twitter I might disable comments because I get so much spam here on YouTube but uh you can still leave me a like and you can go watch those videos and you can
 - [00:38:52](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2332) ➜ also subscribe if you haven't done that yet it's time and I will see you in one of my next vide videos there so many cool stuff happening on salana and I
 - [00:39:01](https://www.youtube.com/watch?v=n-ym1utpzhk?t=2341) ➜ want to keep you up to date yeah till next time bye-bye
